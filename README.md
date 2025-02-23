@@ -1,3 +1,5 @@
+Análise de dados e segmentação de clientes
+
 Esse código é uma aplicação completa para análise de dados e segmentação de clientes usando técnicas de machine learning, especificamente o algoritmo K-Means. Vou detalhar cada parte do código para que você possa entender melhor o que está sendo feito.
 
 Importações
