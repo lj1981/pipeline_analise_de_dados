@@ -83,7 +83,7 @@ def clean_data(df):
     df = df.dropna(axis=1, how='all')
     df = df.dropna(thresh=0.7 * len(df), axis=1)
     final_mem = df.memory_usage().sum() / 1024 ** 2
-    print(f"📉 Memória reduzida de {initial_mem:.2f} MB para {final_mem:.2f} MB")
+    print(f" Memória reduzida de {initial_mem:.2f} MB para {final_mem:.2f} MB")
     return df if df.shape[0] > 0 else None
 Remove duplicatas.
 
@@ -103,7 +103,7 @@ def segment_clients(df, n_clusters=5):
     if not numeric_cols:
         print(" ERRO: Nenhuma coluna numérica encontrada para segmentação.")
         return df
-    print(f"📊 Usando {len(numeric_cols)} colunas para segmentação: {numeric_cols}")
+    print(f" Usando {len(numeric_cols)} colunas para segmentação: {numeric_cols}")
     df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].mean())
     scaler = StandardScaler()
     df_scaled = scaler.fit_transform(df[numeric_cols])
@@ -159,14 +159,14 @@ def comprehensive_eda(df):
     # 1) Sumário de valores ausentes
     missing_summary = df.isnull().sum().sort_values(ascending=False)
     missing_summary.to_csv(f"{OUTPUT_DIR}/missing_summary.csv")
-    print("📋 Sumário de valores ausentes salvo em missing_summary.csv")
+    print(" Sumário de valores ausentes salvo em missing_summary.csv")
 
     # 2) Estatísticas descritivas para colunas numéricas
     numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
     if numeric_cols:
         desc_stats = df[numeric_cols].describe().T
         desc_stats.to_csv(f"{OUTPUT_DIR}/numeric_descriptive_stats.csv")
-        print("📊 Estatísticas descritivas das colunas numéricas salvas em numeric_descriptive_stats.csv")
+        print(" Estatísticas descritivas das colunas numéricas salvas em numeric_descriptive_stats.csv")
 
     # 3) Frequências para colunas categóricas
     cat_cols = df.select_dtypes(include=['object', 'category']).columns.tolist()
@@ -330,7 +330,7 @@ def generate_report(df):
         cluster_counts = {}
 
     report_content = f"""
-    📋 Relatório de Análise - {datetime.now().strftime('%Y-%m-%d %H:%M')}
+     Relatório de Análise - {datetime.now().strftime('%Y-%m-%d %H:%M')}
     ------------------------------------------------------------
     • Dimensões do dataset: {num_rows} linhas x {num_cols} colunas
     • Memória utilizada: {df.memory_usage().sum() / 1024 ** 2:.2f} MB
